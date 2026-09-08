@@ -4,10 +4,36 @@ In-memory fakes and xUnit helpers for testing services that depend on
 [Bitbound.SystemAbstractions](https://www.nuget.org/packages/Bitbound.SystemAbstractions). Unlike the main package, the
 types here are public so tests can build and inspect them directly.
 
-## Install
+## Quick Start
+
+Install the package.
 
 ```
 dotnet add package Bitbound.SystemAbstractions.TestUtilities
+```
+
+Seed the fakes, then swap them in over the real registrations so the service under test behaves against in-memory state
+on any operating system.
+
+```csharp
+using Bitbound.SystemAbstractions;
+using Bitbound.SystemAbstractions.TestUtilities.FileSystem;
+using Bitbound.SystemAbstractions.TestUtilities.Registry;
+using Bitbound.SystemAbstractions.Windows.Registry;
+
+var fileSystem = new FakeFileSystem();
+fileSystem.AddFile("/data/config.json", """{"port": 5000}""");
+
+var registry = new FakeRegistry();
+registry.SetValue(@"HKEY_CURRENT_USER\Software\MyApp", "InstallDir", @"C:\app");
+
+var services = new ServiceCollection();
+services.AddSystemAbstractions();
+services.AddSingleton<IFileSystem>(fileSystem);
+services.AddSingleton<IFileAccessPermissions>(fileSystem);
+services.AddSingleton<IRegistryManager>(registry);
+
+var service = services.BuildServiceProvider().GetRequiredService<MyService>();
 ```
 
 ## FakeFileSystem
