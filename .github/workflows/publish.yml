@@ -47,7 +47,10 @@ jobs:
     - name: Pack
       run: dotnet pack SystemAbstractions.slnx --configuration Release --no-build -p:PackageVersion=${{ env.PKG_VERSION }}
 
+    # The OIDC exchange is only attempted on runs that will actually publish, so pushes and pull
+    # requests stay green without the NUGET_USER secret.
     - name: NuGet login (OIDC)
+      if: github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch'
       uses: NuGet/login@v1
       id: login
       with:
