@@ -18,9 +18,6 @@ Bitbound.SystemAbstractions.TestUtilities the fakes and xUnit helpers
 Tests/Bitbound.SystemAbstractions.Tests  tests for both, including the fakes
 ```
 
-Libraries target `net8.0` and `net10.0`. The test project targets `net10.0` and runs on Microsoft's testing platform, so
-it is executed with `dotnet run` rather than `dotnet test`.
-
 ## Build and test
 
 ```
@@ -37,8 +34,3 @@ dotnet run --project Tests/Bitbound.SystemAbstractions.Tests/Bitbound.SystemAbst
 
 Filter paths are `/assembly/namespace/class/method`, and the namespace segment is separate from (and usually repeats) the
 assembly name.
-
-## Publishing
-
-`.github/workflows/publish.yml` builds, tests, and packs both libraries. It authenticates to NuGet with OIDC via
-`NuGet/login`, and pushes only on a manual (`workflow_dispatch`) run against `main`.
