@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Bitbound.SystemAbstractions/Bitbound.SystemAbstractions.csproj" />
+  <Project Path="Bitbound.SystemAbstractions.TestUtilities/Bitbound.SystemAbstractions.TestUtilities.csproj" />
+  <Project Path="Tests/Bitbound.SystemAbstractions.Tests/Bitbound.SystemAbstractions.Tests.csproj" />
+</Solution>

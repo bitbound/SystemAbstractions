@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>Bitbound.SystemAbstractions.TestUtilities</RootNamespace>
+    <AssemblyName>Bitbound.SystemAbstractions.TestUtilities</AssemblyName>
+    <Description>In-memory fakes (file system, Windows registry), platform-specific xUnit facts/theories, and an xUnit-backed ILogger for testing services that depend on Bitbound.SystemAbstractions.</Description>
+    <PackageTags>testing;fakes;mocks;xunit;file-system;registry;operating-system;abstractions</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bitbound.SystemAbstractions\Bitbound.SystemAbstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="xunit.v3.extensibility.core" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>
