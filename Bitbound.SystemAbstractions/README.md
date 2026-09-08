@@ -4,19 +4,62 @@ Operating system abstractions for .NET services: file system, processes, system 
 Interfaces are public, implementations are internal, and everything is registered through
 `ServiceCollectionExtensions`.
 
-## Install
+## Quick Start
+
+Install the package.
 
 ```
 dotnet add package Bitbound.SystemAbstractions
 ```
 
-## Usage
+Register the abstractions on your `IServiceCollection`.
 
 ```csharp
+using Bitbound.SystemAbstractions;
+
+var services = new ServiceCollection();
 services.AddSystemAbstractions();
 ```
 
-That registers:
+Resolve and use them through the interfaces.
+
+```csharp
+public class BackupService(IFileSystem fileSystem, IProcessManager processes)
+{
+  public async Task RunAsync()
+  {
+    if (fileSystem.FileExists("/data/state.json"))
+    {
+      var result = await processes.GetProcessOutput("dotnet", "--version");
+      if (result.IsSuccess)
+      {
+        Console.WriteLine("dotnet version: " + result.Value);
+      }
+    }
+  }
+}
+```
+
+The companion test package provides in-memory fakes and xUnit helpers.
+
+```
+dotnet add package Bitbound.SystemAbstractions.TestUtilities
+```
+
+```csharp
+using Bitbound.SystemAbstractions.FileSystem;
+
+var fileSystem = new FakeFileSystem();
+fileSystem.AddFile("/data/config.json", """{"port": 5000}""");
+
+var services = new ServiceCollection();
+services.AddSystemAbstractions();
+services.AddSingleton<IFileSystem>(fileSystem);
+
+// Inject into your service and assert against the fakes.
+```
+
+`AddSystemAbstractions()` registers:
 
 | Service | Registration | Notes |
 | --- | --- | --- |

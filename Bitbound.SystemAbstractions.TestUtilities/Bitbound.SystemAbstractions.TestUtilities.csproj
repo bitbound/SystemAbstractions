@@ -4,6 +4,7 @@
     <AssemblyName>Bitbound.SystemAbstractions.TestUtilities</AssemblyName>
     <Description>In-memory fakes (file system, Windows registry), platform-specific xUnit facts/theories, and an xUnit-backed ILogger for testing services that depend on Bitbound.SystemAbstractions.</Description>
     <PackageTags>testing;fakes;mocks;xunit;file-system;registry;operating-system;abstractions</PackageTags>
+    <PackageIcon>bitbound.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\.assets\bitbound.png" Pack="true" PackagePath="\" />
     <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 </Project>

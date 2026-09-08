@@ -4,6 +4,7 @@
     <AssemblyName>Bitbound.SystemAbstractions</AssemblyName>
     <Description>Operating system abstractions (file system, processes, environment, and Windows registry) for improved service testability.</Description>
     <PackageTags>os;operating-system;abstractions;file-system;process;processes;registry;environment;di;testability</PackageTags>
+    <PackageIcon>bitbound.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\.assets\bitbound.png" Pack="true" PackagePath="\" />
     <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 </Project>
