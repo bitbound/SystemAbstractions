@@ -1,3 +1,10 @@
+using Bitbound.SystemAbstractions.FileSystem;
+using Bitbound.SystemAbstractions.Processes;
+using Bitbound.SystemAbstractions.Windows.Registry;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+
 namespace Bitbound.SystemAbstractions;
 
 /// <summary>
@@ -6,7 +13,6 @@ namespace Bitbound.SystemAbstractions;
 /// </summary>
 public static class ServiceCollectionExtensions
 {
-
   /// <summary>
   /// Registers <see cref="IFileSystem"/> and <see cref="IFileAccessPermissions"/>.
   /// </summary>
