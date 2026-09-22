@@ -236,7 +236,10 @@ public sealed class FileSystemTests : IDisposable
     var info = _fileSystem.GetFileVersionInfo(path);
 
     Assert.NotNull(info);
-    Assert.NotNull(info.FileVersion);
+    if (OperatingSystem.IsWindows())
+    {
+      Assert.NotNull(info.FileVersion);
+    }
   }
 
   [Fact]

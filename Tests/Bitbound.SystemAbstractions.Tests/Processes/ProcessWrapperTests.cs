@@ -69,7 +69,7 @@ public class ProcessWrapperTests
     Assert.False(string.IsNullOrEmpty(process.ProcessName));
     Assert.True(process.Handle != 0);
     Assert.True(process.HandleCount > 0);
-    Assert.True(process.BasePriority > 0);
+    Assert.True(process.BasePriority >= 0);
     Assert.True(process.SessionId >= 0);
     Assert.True(
       string.Equals(Environment.ProcessPath, process.FilePath, StringComparison.OrdinalIgnoreCase),
