@@ -163,6 +163,19 @@ public class ProcessWrapperTests
   }
 
   [Fact]
+  public async Task Start_WhenProcessWritesToStandardError_ReadersSeeTheLine()
+  {
+    var startInfo = Shell("echo hello from stderr 1>&2");
+    startInfo.RedirectStandardError = true;
+
+    using var process = _manager.Start(startInfo)!;
+    var errorOutput = process.StandardError.ReadToEnd();
+    await process.WaitForExitAsync(TestContext.Current.CancellationToken);
+
+    Assert.Contains("hello from stderr", errorOutput);
+  }
+
+  [Fact]
   public async Task Start_WhenProcessWritesToStandardOutput_ReadersSeeTheLine()
   {
     var startInfo = Shell("echo hello from stdout");
